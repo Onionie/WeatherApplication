@@ -2,7 +2,8 @@
 
 require('dotenv').config(); // for my api
 const request = require('request'); //to make http calls
-
+const location = require('./utils/geocode'); //import local file
+const forecast = require('./utils/forecast'); //import forecast function
 const apiKey = process.env.API_KEY; //Hidden API key access
 
 
@@ -22,38 +23,17 @@ const apiKey = process.env.API_KEY; //Hidden API key access
 //
 // });
 
-// const location = (address, callback) => {
-//
-//
-//   //json:true parses the JSON.pars(response.body) to object
-//   request( {url: url, json: true}, (error, response) => {
-//     if(error){
-//       callback("Unable to connect", undefined);
-//     }else if(response.body.features.length === 0){
-//       callback("Unable to find location. Try another search.", undefined);
-//     }
-//
-//   });
-// }
-//
-// location("asdasd", (error,data)=>{
+
+
+// // Call the callback function "location" from utils.js
+// location("Boston", (error,data)=>{
 //   console.log("Error", error);
 //   console.log("Data", data);
 // });
 
-//Geocode API
-// Request for geocoding to get our latitude and longitude
-const geoCodingUrl = "https://api.mapbox.com/geocoding/v5/mapbox.places/Los%20Angeles.json?access_token=pk.eyJ1Ijoib25pb25pZSIsImEiOiJja3B5amRldTkwMHZlMzFtcGw4NmVxN3Z0In0.UjVn1bfDC8FkP2JQToTr_Q";
-  request({url: geoCodingUrl, json: true}, (error, response)=>{
-  if(error){
-    console.log("Network Problem");
-  }
-  else if(response.body.features.length === 0){
-    console.log("No Matching Result.");
-  }
-  else{
-    const latitude = response.body.features[0].center[1];
-    const longitude = response.body.features[0].center[0];
-    console.log(latitude, longitude);
-  }
-});
+
+
+forecast(44.1545, -75.7088, (error, data) => {
+  console.log('Error', error)
+  console.log('Data', data)
+})
