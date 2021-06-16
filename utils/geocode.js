@@ -1,8 +1,10 @@
+require('dotenv').config(); // for my api
 const request = require('request');
+const geoApiKey = process.env.geoAPI; //Hidden API key access
 
 // Callback function
 const location = (address, callback) => {
- const Url = "https://api.mapbox.com/geocoding/v5/mapbox.places/" + encodeURIComponent(address) + ".json?access_token=pk.eyJ1Ijoib25pb25pZSIsImEiOiJja3B5amRldTkwMHZlMzFtcGw4NmVxN3Z0In0.UjVn1bfDC8FkP2JQToTr_Q";
+ const Url = "https://api.mapbox.com/geocoding/v5/mapbox.places/" + encodeURIComponent(address) + ".json?access_token=" + geoApiKey;
 
 
   //json:true parses the JSON.parse(response.body) to object
