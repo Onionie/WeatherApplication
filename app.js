@@ -1,20 +1,27 @@
 //jshint esversion:6
 
-require('dotenv').config(); // for my api
-const request = require('request'); //to make http calls
 const location = require('./utils/geocode'); //import local file
 const forecast = require('./utils/forecast'); //import forecast function
-const apiKey = process.env.API_KEY; //Hidden API key access
 
-// Call the callback function "location" from utils.js
-location("Boston", (error,data)=>{
-  console.log("Error", error);
-  console.log("Data", data);
-});
+const address = process.argv[2];
 
-
-
-forecast(44.1545, -75.7088, (error, data) => {
-  console.log('Error', error)
-  console.log('Data', data)
-})
+if (!address){
+  console.log("Please provide an address");
+}
+else{
+  // Call the callback function "location" from utils.js
+  location("Boston", (error, data)=>{ //This data includes the lat and long
+    if (error){
+      return console.log(error);
+    }
+    console.log("Error", error);
+    console.log("Data", data);
+    forecast(data.latitude, data.longitude, (error, forecastData) => {
+      if (error){
+        return console.log(error);
+      }
+      console.log(data.location);
+      console.log(forecastData);
+    });
+  });
+}
