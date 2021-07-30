@@ -10,17 +10,15 @@ if (!address){
 }
 else{
   // Call the callback function "location" from utils.js
-  location("Boston", (error, data)=>{ //This data includes the lat and long
+  location(address, (error, {latitude, longitude, location} = {})=>{ //This data includes the lat and long
     if (error){
       return console.log(error);
     }
-    console.log("Error", error);
-    console.log("Data", data);
-    forecast(data.latitude, data.longitude, (error, forecastData) => {
+    forecast(latitude, longitude, (error, forecastData) => {
       if (error){
         return console.log(error);
       }
-      console.log(data.location);
+      console.log(location);
       console.log(forecastData);
     });
   });

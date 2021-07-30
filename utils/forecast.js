@@ -4,25 +4,19 @@ const apiKey = process.env.API_KEY; //Hidden API key access
 
   const forecast = (latitude, longitude, callback) => {
     const forecastURL = "http://api.weatherstack.com/current?access_key=" + apiKey + "&query=" + latitude+ "," + longitude + "&units=f";
-    request({url: forecastURL, json: true}, (error, response) => {
-      data = response.body;
 
+    request({url: forecastURL, json: true}, (error, {body}) => {
       //Check for errors
       if (error){
         console.log("Connection Error");
       }
-      else if (response.body.error){
+      else if (body.error){
         console.log("Location Error")
       }
       else{
-        callback(undefined, { //Callback data
-          Temperature: data.current.temperature,
-          Description: data.current.weather_descriptions,
-          Humidity: data.current.humidity
-        });//End of callback
-      }
-
-    }); // End of request
+        callback(undefined, "It is currently " + body.current.temperature + " The Humidity is: " + body.current.humidity);
+        }
+      });//End of callback
 
 
   }//End of Forecast function line
