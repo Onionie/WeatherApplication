@@ -1,6 +1,6 @@
 //jshint esversion:6
 
-const location = require('./utils/geocode'); //import local file
+const geocode = require('./utils/geocode'); //import local file
 const forecast = require('./utils/forecast'); //import forecast function
 const express = require('express');
 const ejs = require("ejs");
@@ -16,13 +16,44 @@ app.use(express.static('public'));
 
 
 
+
 app.get('/', (req, res) => {
   res.render('home');
+});
+
+
+app.get('/weather', (req, res) => {
+  if(!req.query.address){
+    return res.send({
+      error: "You must provide an adress"
+    });
+  }
+
+geocode(req.query.address, (error, {latitude, longitude, location} ={}) => {
+  if(error){
+    return res.send({error});
+  }
+
+  forecast(latitude, longitude, (error, forecastData) => {
+  if(error){
+    return res.send({error});
+  }
+
+    res.send({
+      forecast: forecastData,
+      location,
+      address: req.query.address
+    });
+  });
+});
+
 });
 
 app.post('/', (req, res) => {
   res.redirect('/');
 });
+
+
 
 app.listen(3000, () =>{
   console.log("Listening on Port 3000");

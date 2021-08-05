@@ -3,7 +3,7 @@ const request = require('request');
 const geoApiKey = process.env.geoAPI; //Hidden API key access
 
 // Callback function
-const location = (address, callback) => {
+const geocode = (address, callback) => {
  const url = "https://api.mapbox.com/geocoding/v5/mapbox.places/" + encodeURIComponent(address) + ".json?access_token=" + geoApiKey;
 
   //json:true parses the JSON.parse
@@ -25,4 +25,4 @@ const location = (address, callback) => {
 }
 
 //To export a function
-module.exports = location;
+module.exports = geocode;
