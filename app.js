@@ -20,6 +20,10 @@ app.get('/', (req, res) => {
   res.render('home');
 });
 
+app.post('/', (req, res) => {
+  res.redirect('/');
+});
+
 app.listen(3000, () =>{
   console.log("Listening on Port 3000");
 });
