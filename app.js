@@ -3,11 +3,21 @@
 const location = require('./utils/geocode'); //import local file
 const forecast = require('./utils/forecast'); //import forecast function
 const express = require('express');
+const ejs = require("ejs");
 
+//To use express
 const app = express();
 
+//To use EJS
+app.set('view engine', 'ejs');
+
+//To use styling through public folder
+app.use(express.static('public'));
+
+
+
 app.get('/', (req, res) => {
-  res.send("<h1>Working</h1>")
+  res.render('home');
 });
 
 app.listen(3000, () =>{
