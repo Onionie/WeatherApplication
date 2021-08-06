@@ -12,7 +12,7 @@ A simple weather application that fetches the current weather of a location that
 - NPM(packages)
 
 # Deployment
-
+https://onielg-weather-today.herokuapp.com/
 
 # Screenshots
 <img src = "https://github.com/Onionie/WeatherApplication/blob/main/Screenshots/1.PNG" width = "1080">
