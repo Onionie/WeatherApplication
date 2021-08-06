@@ -15,5 +15,5 @@ A simple weather application that fetches the current weather of a location that
 
 
 # Screenshots
-<img src = "https://github.com/Onionie/WeatherApplication/blob/main/images/1.PNG" width = "1080">
-<img src = "https://github.com/Onionie/WeatherApplication/blob/main/images/2.PNG" width = "1080">
+<img src = "https://github.com/Onionie/WeatherApplication/blob/main/Screenshots/1.PNG" width = "1080">
+<img src = "https://github.com/Onionie/WeatherApplication/blob/main/Screenshots/2.PNG" width = "1080">
