@@ -49,9 +49,9 @@ geocode(req.query.address, (error, {latitude, longitude, location} ={}) => {
 
 });
 
-app.post('/', (req, res) => {
-  res.redirect('/');
-});
+// app.post('/', (req, res) => {
+//   res.redirect('/');
+// });
 
 
 
